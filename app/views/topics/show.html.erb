@@ -1,0 +1,22 @@
+<h3><%= @topic.title %></h3>
+<p><%= @topic.content %></p>
+
+<% if user_signed_in? %>
+	<% if current_user.admin %>
+		<%= link_to "Edit", edit_topic_path(@topic) %>
+		<%= link_to "Delete", topic_path(@topic), method: :delete, data: {confirm: "Are you sure?"} %>
+	<% end -%>
+<% end -%>
+
+<% unless current_user && current_user.already_favorited?(@topic) %> <%= link_to "Favorite", favorite_path(@topic, type: "favorite"), method: :put, class:"lightblue" %> 
+<% else %>
+ <%= link_to "Unfavorite", favorite_path(@topic, type: "unfavorite"), method: :put, class:"lightblue" %> 
+<% end -%>
+
+
+<h4>Comments: <%= @topic.comments.count %></h4>
+
+<p><%= render @topic.comments %></p>
+<% if user_signed_in? %>
+	<%= render "comments/form" %>
+<% end -%>

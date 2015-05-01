@@ -1,0 +1,7 @@
+<%= form_for [@topic, @topic.comments.build] do |f| %>
+  	<div class="comment">
+  		<%= f.text_area :body %>
+	</div>
+  	<%= f.submit "Comment" %>
+
+<% end -%>

@@ -1,0 +1,5 @@
+<% @topics.each do |topic|%>
+	<h3><%= link_to topic.title, topic %></h3>
+	<p>created: <%= time_ago_in_words(topic.created_at) %></p>
+	<hr>
+<% end -%>

@@ -1,0 +1,9 @@
+<p><%= comment.body %></p>
+
+<% if user_signed_in? %>
+	<% unless current_user && current_user.already_reported?(comment) %> 
+	  	<%= link_to "Report", reports_path(@topic, id: comment, type: "report"), method: :put, class:"red" %>
+	<% else %>
+		<%= link_to "Unreport", reports_path(@topic, id: comment, type: "unreport"), method: :put, class:"red" %>   
+	<% end %>
+<% end -%> 
